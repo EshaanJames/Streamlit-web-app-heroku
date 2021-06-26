@@ -27,12 +27,13 @@ y = iris_df['Label']
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state = 42, test_size = 0.33)
 
 # Creating the SVC model and storing the accuracy score in a variable 'score'.
-
 svc_model   = SVC(kernel = 'linear')
 svc_model.fit(X_train, y_train)
 
+log_reg = LogisticRegression(n_jobs = -1)
+log_reg.fit(X_train, y_train)
 
-
+rf_clf = RamdomForestClassifier(n_jobs = -1, n_estimators = 100)
 
 @st.cache
 def prediction(Model, SepalLength, SepalWidth, PetalLength, PetalWidth):
@@ -44,21 +45,6 @@ def prediction(Model, SepalLength, SepalWidth, PetalLength, PetalWidth):
     return 'Iris Viginica'
   else:
     return 'Iris Versicolor'
-
-
-# S10.3: Perform this activity in Sublime editor after adding the above code. 
-st.title("Iris Flower Species Prediction App")  
-
-# Add 4 sliders and store the value returned by them in 4 separate variables.
-s_length = st.slider("Sepal Length", 0.0, 10.0)
-s_width = st.slider("Sepal Width", 0.0, 10.0)
-p_length = st.slider("Petal Length", 0.0, 10.0)
-p_width = st.slider("Petal Width", 0.0, 10.0)
-
-if st.button("Predict"):
-	species_type = prediction(s_length, s_width, p_length, p_width)
-	st.write("Species predicted:", species_type)
-	st.write("Accuracy score of this model is:", score)
 	
 # S2.3: Copy the following code and paste it in the 'improved_iris_app.py' file after the previous code. 
 # Add title widget
