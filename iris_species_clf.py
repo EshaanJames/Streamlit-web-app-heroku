@@ -33,7 +33,7 @@ svc_model.fit(X_train, y_train)
 log_reg = LogisticRegression(n_jobs = -1)
 log_reg.fit(X_train, y_train)
 
-rf_clf = RamdomForestClassifier(n_jobs = -1, n_estimators = 100)
+rf_clf = RandomForestClassifier(n_jobs = -1, n_estimators = 100)
 
 @st.cache
 def prediction(Model, SepalLength, SepalWidth, PetalLength, PetalWidth):
